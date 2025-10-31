@@ -8,7 +8,7 @@ hash_hex = "e3cdaca6fff993376fd99b3606c400d25ed3bb7ef39461f575fefc39ef016fb6"
 res = 0           # Resultado de la operacion
 opValid = True    # Resulta util si la operacion no fue valida, por ejemplo en la division, para no imprimir el resultado
 
-opciones = [
+menuPrincipal = [
             "Mostrar la hora actual",
             "Generar contraseña segura",
             "Calcular valor cuadratico medio",
@@ -42,13 +42,10 @@ def validatePassword() -> bool:
 
 
 def printMenu():
-    """Imprime el menú de operaciones matemáticas."""
-    print("\n=== Menú de Operaciones Matemáticas ===")
-    print("1. Sumar")
-    print("2. Restar")
-    print("3. Multiplicar")
-    print("4. Dividir")
-    print("5. Salir")
+    """Imprime el menú"""
+    print("\n=== Menú Principal ===")
+    for i, opcion in enumerate(menuPrincipal, 1):
+        print(f"{i}- {opcion}")
 
 
 #--- Programa principal ---
