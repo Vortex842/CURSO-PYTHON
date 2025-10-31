@@ -1,4 +1,4 @@
-# Hash de la contraseña muy segura
+
 import getpass as gp
 import hashlib as hash
 import math
@@ -30,33 +30,20 @@ def generateSecurePassword():
     print("Contraseña segura generada:", txtGen, "\nHash:", hashPassword(txtGen), "\n\n")
 
 
-def rootsEquation():
-    """Calcula las raíces de una ecuación cuadrática"""
-    print("Calculando raíces de la ecuación cuadrática...")
+def sqrtOfRandomLengthMessage():
+    """Calcula raiz cuadrada de un numero random a partir del tamaño de un mensaje"""
+    msg = input("Ingrese un mensaje cualquiera: ")
 
-    # Pedimos los coeficientes de la ecuación
-    a = float(input("Ingrese el coeficiente a: "))
-    b = float(input("Ingrese el coeficiente b: "))
-    c = float(input("Ingrese el coeficiente c: "))
 
-    # Calculamos el discriminante
-    discriminante = b**2 - 4*a*c
+    longitud = len(msg)
+    
+    longitudRand = random.randint(1, longitud)
+    print(f"Longitud del mensaje: {longitud}")
+    print(f"Longitud aleatoria: {longitudRand}")
+    print(f"Raiz cuadrada: {math.sqrt(longitudRand)}\n\n")
 
-    if discriminante > 0:
-        # Dos raíces reales y diferentes
-        raiz1 = (-b + math.sqrt(discriminante)) / (2*a)
-        raiz2 = (-b - math.sqrt(discriminante)) / (2*a)
-        print(f"x1 = {raiz1} y x2 = {raiz2}")
 
-    elif discriminante == 0:
-        # Una raíz real doble
-        raiz = -b / (2*a)
-        print(f"x1,2 = {raiz}")
-
-    else:
-        # No hay raíces reales
-        print("No hay raíces reales.")
-
+# Funciones para el juego del ahorcado
 def mostrarAhorcado(intentos):
     dibujos = [
         """
@@ -207,12 +194,14 @@ def exitProgram():
     """Sale del programa"""
     print("Saliendo del programa...\n\n")
     exit(0)
+# FIN funciones del menú
 
 
+# --- Definición del menú principal ---
 menuPrincipal = [
             ["Mostrar la hora actual", showCurrentTime],
             ["Generar contraseña segura", generateSecurePassword],
-            ["Calcular raíces de una ecuación cuadrática", rootsEquation],
+            ["Calcular raiz cuadrada random del tamaño de un mensaje", sqrtOfRandomLengthMessage],
             ["Ahorcado", ahorcado],
             ["Salir del programa", exitProgram],
            ]
