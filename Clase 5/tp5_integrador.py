@@ -27,18 +27,52 @@ def generateSecurePassword():
         # Reemplaza el caracter en la posición i con el caracter aleatorio seleccionado
         txtGen += caracter
 
-    print("Contraseña segura generada:", txtGen + "\n\n")
+    print("Contraseña segura generada:", txtGen, "\nHash:", hashPassword(txtGen), "\n\n")
 
 
-def RMSValue():
-    """Calcula el valor cuadrático medio"""
-    print("Calculando valor cuadrático medio...")
+def rootsEquation():
+    """Calcula las raíces de una ecuación cuadrática"""
+    print("Calculando raíces de la ecuación cuadrática...")
 
-    a = float(input("a: "))
-    b = float(input("b: "))
-    c = float(input("c: "))
+    # Pedimos los coeficientes de la ecuación
+    a = ("Ingrese el coeficiente a: ")
+    b = ("Ingrese el coeficiente b: ")
+    c = ("Ingrese el coeficiente c: ")
+    
+    if not a.isdigit():
+        print("El coeficiente a debe ser un número.")
+        return
 
-    print(f"El valor cuadratico medio es {math.sqrt((a**2 + b**2 + c**2)/3)}\n\n")
+    if not b.isdigit():
+        print("El coeficiente b debe ser un número.")
+        return
+
+    if not c.isdigit():
+        print("El coeficiente c debe ser un número.")
+        return
+
+    # Convertimos los coeficientes a float
+    a = float(a)
+    b = float(b)
+    c = float(c)
+
+    # Calculamos el discriminante
+    discriminante = b**2 - 4*a*c
+
+    if discriminante > 0:
+        # Dos raíces reales y diferentes
+        raiz1 = (-b + math.sqrt(discriminante)) / (2*a)
+        raiz2 = (-b - math.sqrt(discriminante)) / (2*a)
+        print(f"x1 = {raiz1} y x2 = {raiz2}")
+
+    elif discriminante == 0:
+        # Una raíz real doble
+        raiz = -b / (2*a)
+        print(f"x1,2 = {raiz}")
+
+    else:
+        # No hay raíces reales
+        print("No hay raíces reales.")
 
 def ahorcado():
     """Inicia el juego del ahorcado"""
@@ -53,7 +87,7 @@ def exitProgram():
 menuPrincipal = [
             ["Mostrar la hora actual", showCurrentTime],
             ["Generar contraseña segura", generateSecurePassword],
-            ["Calcular valor cuadratico medio", RMSValue],
+            ["Calcular raíces de una ecuación cuadrática", rootsEquation],
             ["Ahorcado", ahorcado],
             ["Salir del programa", exitProgram],
            ]
@@ -89,6 +123,19 @@ def printMenu():
     for i, opcion in enumerate(menuPrincipal, 1):
         print(f"({i}) {opcion[0]}")
 
+def validateOptionInput(opcion: str) -> bool:
+    """Verifica que la opción ingresada sea válida."""
+
+    if not opcion.isdigit():
+        print("Opción no válida. Por favor ingresa un número.")
+        return False
+
+    opcion = int(opcion)
+    if opcion < 1 or opcion > len(menuPrincipal):
+        print("Opción no válida. Por favor elige una opción del 1 al 5.")
+        return False
+
+    return True
 
 
 #--- Programa principal ---
@@ -102,16 +149,8 @@ if validatePassword():
 
         # Pedimos la opción al usuario y verificamos que sea válida
         opcion = input(f"Elige una opción (1-{len(menuPrincipal)}): ")
-
-        if not opcion.isdigit():
-            print("Opción no válida. Por favor ingresa un número.")
+        if not validateOptionInput(opcion):
             continue
-
-        opcion = int(opcion)
-        if opcion < 1 or opcion > len(menuPrincipal):
-            print("Opción no válida. Por favor elige una opción del 1 al 5.")
-            continue
-
 
         # Decisiones según la opción elegida
         menuPrincipal[opcion - 1][1]()  # Llamamos a la función correspondiente
