@@ -236,8 +236,13 @@ def validatePassword() -> bool:
             return True
         
         else:
-            print(f"Contraseña incorrecta ({maxAttemps - countAttemps - 1} intentos restantes). Hagalo denuevo")
             countAttemps += 1
+
+            if(countAttemps == maxAttemps):
+              return False
+              
+            print(f"Contraseña incorrecta ({maxAttemps - countAttemps} intentos restantes). Hagalo denuevo")
+            
 
     return False
 
@@ -283,5 +288,3 @@ if validatePassword():
 
 else:
     print("Ha excedido el número máximo de intentos. Saliendo del programa...")
-
-    
