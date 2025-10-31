@@ -106,4 +106,4 @@ while True:
             countAttemps = 0
             break
 
-        print(f"Contraseña incorrecta ({maxAttemps - countAttemps} intentos restantes). Acceso denegado. Hagalo denuevo")
+        print(f"Contraseña incorrecta ({maxAttemps - countAttemps - 1} intentos restantes). Acceso denegado. Hagalo denuevo")
