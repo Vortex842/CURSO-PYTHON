@@ -250,7 +250,7 @@ def validateOptionInput(opcion: str) -> bool:
 menuPrincipal = [
             ["Mostrar la hora actual", showCurrentTime],
             ["Generar contraseña segura", generateSecurePassword],
-            ["Calcular raiz cuadrada random del tamaño de un mensaje", sqrtOfRandomLengthMessage],
+            ["Calcular raíz cuadrada random del tamaño de un mensaje", sqrtOfRandomLengthMessage],
             ["Ahorcado", ahorcado],
             ["Salir del programa", exitProgram],
            ]
