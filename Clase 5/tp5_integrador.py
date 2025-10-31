@@ -35,26 +35,9 @@ def rootsEquation():
     print("Calculando raíces de la ecuación cuadrática...")
 
     # Pedimos los coeficientes de la ecuación
-    a = ("Ingrese el coeficiente a: ")
-    b = ("Ingrese el coeficiente b: ")
-    c = ("Ingrese el coeficiente c: ")
-    
-    if not a.isdigit():
-        print("El coeficiente a debe ser un número.")
-        return
-
-    if not b.isdigit():
-        print("El coeficiente b debe ser un número.")
-        return
-
-    if not c.isdigit():
-        print("El coeficiente c debe ser un número.")
-        return
-
-    # Convertimos los coeficientes a float
-    a = float(a)
-    b = float(b)
-    c = float(c)
+    a = float(input("Ingrese el coeficiente a: "))
+    b = float(input("Ingrese el coeficiente b: "))
+    c = float(input("Ingrese el coeficiente c: "))
 
     # Calculamos el discriminante
     discriminante = b**2 - 4*a*c
@@ -153,6 +136,7 @@ if validatePassword():
             continue
 
         # Decisiones según la opción elegida
+        opcion = int(opcion)
         menuPrincipal[opcion - 1][1]()  # Llamamos a la función correspondiente
 
 else:
