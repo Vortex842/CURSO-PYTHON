@@ -1,7 +1,9 @@
 # Hash de la contraseña muy segura
 import getpass as gp
 import hashlib as hash
+import math
 import time
+import random
 
 
 passHash = "e3cdaca6fff993376fd99b3606c400d25ed3bb7ef39461f575fefc39ef016fb6"
@@ -15,11 +17,28 @@ def showCurrentTime():
 
 def generateSecurePassword():
     """Genera una contraseña segura"""
-    print("Contraseña segura generada: ...")
+    # Usando la libreria random para generar una contraseña segura
+    txt = input("Ingrese el texto base para generar la contraseña segura: ")
+    txtGen = ""
+
+    for i in range(len(txt)):  # Rango igual a la longitud del texto base
+        caracter = random.choice(txt)   # Selecciona un caracter aleatorio del texto base
+        
+        # Reemplaza el caracter en la posición i con el caracter aleatorio seleccionado
+        txtGen += caracter
+
+    print("Contraseña segura generada:", txtGen + "\n\n")
+
 
 def RMSValue():
     """Calcula el valor cuadrático medio"""
     print("Calculando valor cuadrático medio...")
+
+    a = float(input("a: "))
+    b = float(input("b: "))
+    c = float(input("c: "))
+
+    print(f"El valor cuadratico medio es {math.sqrt((a**2 + b**2 + c**2)/3)}\n\n")
 
 def ahorcado():
     """Inicia el juego del ahorcado"""
