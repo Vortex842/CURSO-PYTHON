@@ -101,7 +101,13 @@ if validatePassword():
         printMenu()
 
         # Pedimos la opción al usuario y verificamos que sea válida
-        opcion = int(input(f"Elige una opción (1-{len(menuPrincipal)}): "))
+        opcion = input(f"Elige una opción (1-{len(menuPrincipal)}): ")
+
+        if not opcion.isdigit():
+            print("Opción no válida. Por favor ingresa un número.")
+            continue
+
+        opcion = int(opcion)
         if opcion < 1 or opcion > len(menuPrincipal):
             print("Opción no válida. Por favor elige una opción del 1 al 5.")
             continue
