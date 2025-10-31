@@ -1,19 +1,42 @@
 # Hash de la contraseña muy segura
 import getpass as gp
 import hashlib as hash
+import time
 
 
-hash_hex = "e3cdaca6fff993376fd99b3606c400d25ed3bb7ef39461f575fefc39ef016fb6"
+passHash = "e3cdaca6fff993376fd99b3606c400d25ed3bb7ef39461f575fefc39ef016fb6"
 
-res = 0           # Resultado de la operacion
-opValid = True    # Resulta util si la operacion no fue valida, por ejemplo en la division, para no imprimir el resultado
+
+def showCurrentTime():
+    """Muestra la hora actual"""
+    # Te devuelve la hora actual en formato HH:MM:SS (24 horas en localtime)
+    current_time = time.strftime("%H:%M:%S")
+    print(f"La hora actual es: {current_time}\n\n")
+
+def generateSecurePassword():
+    """Genera una contraseña segura"""
+    print("Contraseña segura generada: ...")
+
+def RMSValue():
+    """Calcula el valor cuadrático medio"""
+    print("Calculando valor cuadrático medio...")
+
+def ahorcado():
+    """Inicia el juego del ahorcado"""
+    print("Iniciando juego del ahorcado...")
+
+def exitProgram():
+    """Sale del programa"""
+    print("Saliendo del programa...\n\n")
+    exit(0)
+
 
 menuPrincipal = [
-            "Mostrar la hora actual",
-            "Generar contraseña segura",
-            "Calcular valor cuadratico medio",
-            "Ahorcado",
-            "Salir del programa",
+            ["Mostrar la hora actual", showCurrentTime],
+            ["Generar contraseña segura", generateSecurePassword],
+            ["Calcular valor cuadratico medio", RMSValue],
+            ["Ahorcado", ahorcado],
+            ["Salir del programa", exitProgram],
            ]
 
 
@@ -31,7 +54,7 @@ def validatePassword() -> bool:
     while countAttemps < maxAttemps:
         passwordInput = gp.getpass('Ingrese la contraseña: ')
 
-        if hashPassword(passwordInput) == hash_hex:
+        if hashPassword(passwordInput) == passHash:
             return True
         
         else:
@@ -45,7 +68,8 @@ def printMenu():
     """Imprime el menú"""
     print("\n=== Menú Principal ===")
     for i, opcion in enumerate(menuPrincipal, 1):
-        print(f"{i}- {opcion}")
+        print(f"({i}) {opcion[0]}")
+
 
 
 #--- Programa principal ---
@@ -57,55 +81,16 @@ if validatePassword():
         # Mostramos el menú principal
         printMenu()
 
-        # Pedimos la opción al usuario
-        opcion = int(input("Elige una opción (1-5): "))
-        if 1 <= opcion and opcion <= 5:
-            if opcion == 1:
-                print("Has elegido la opción de Sumar")
-
-            elif opcion == 2:
-                print("Has elegido la opción de Restar")
-
-            elif opcion == 3:
-                print("Has elegido la opción de Multiplicar")
-
-            elif opcion == 4:
-                print("Has elegido la opción de Dividir")
-
-            if opcion < 5:
-                print("\n\nAhora vamos con los operandos:")
-                a = float(input("a: "))
-                b = float(input("b: "))
-
-            else:
-                print("Saliendo del programa...")
-                break  # Rompemos el bucle para salir del programa
-
-        else:
+        # Pedimos la opción al usuario y verificamos que sea válida
+        opcion = int(input(f"Elige una opción (1-{len(menuPrincipal)}): "))
+        if opcion < 1 or opcion > len(menuPrincipal):
             print("Opción no válida. Por favor elige una opción del 1 al 5.")
             continue
 
+
         # Decisiones según la opción elegida
-        if opcion == 1:
-                res = a + b
+        menuPrincipal[opcion - 1][1]()  # Llamamos a la función correspondiente
 
-        elif opcion == 2:
-            res = a - b
-
-        elif opcion == 3:
-            res = a * b
-
-        elif opcion == 4:
-            if b != 0:
-                res = a / b
-            else:
-                opValid = False
-                print("Error: No se puede dividir por cero.")
-
-        if opValid:
-            print("El resultado de la operacion es", res)
-
-        opValid = True
 else:
     print("Ha excedido el número máximo de intentos. Saliendo del programa...")
 
