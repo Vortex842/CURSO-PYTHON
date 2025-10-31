@@ -197,17 +197,6 @@ def exitProgram():
 # FIN funciones del menú
 
 
-# --- Definición del menú principal ---
-menuPrincipal = [
-            ["Mostrar la hora actual", showCurrentTime],
-            ["Generar contraseña segura", generateSecurePassword],
-            ["Calcular raiz cuadrada random del tamaño de un mensaje", sqrtOfRandomLengthMessage],
-            ["Ahorcado", ahorcado],
-            ["Salir del programa", exitProgram],
-           ]
-
-
-
 def hashPassword(password: str) -> str:
     """Devuelve el hash SHA-256 de la contraseña dada."""
     return hash.sha256(password.encode()).hexdigest()
@@ -256,6 +245,15 @@ def validateOptionInput(opcion: str) -> bool:
 
     return True
 
+
+# --- Definición del menú principal ---
+menuPrincipal = [
+            ["Mostrar la hora actual", showCurrentTime],
+            ["Generar contraseña segura", generateSecurePassword],
+            ["Calcular raiz cuadrada random del tamaño de un mensaje", sqrtOfRandomLengthMessage],
+            ["Ahorcado", ahorcado],
+            ["Salir del programa", exitProgram],
+           ]
 
 #--- Programa principal ---
 print("=== Iniciando sesión ===")
