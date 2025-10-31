@@ -57,9 +57,151 @@ def rootsEquation():
         # No hay raíces reales
         print("No hay raíces reales.")
 
+def mostrarAhorcado(intentos):
+    dibujos = [
+        """
+         +---+
+         |   |
+             |
+             |
+             |
+             |
+        =========
+        """,
+        """
+         +---+
+         |   |
+         O   |
+             |
+             |
+             |
+        =========
+        """,
+        """
+         +---+
+         |   |
+         O   |
+         |   |
+             |
+             |
+        =========
+        """,
+        """
+         +---+
+         |   |
+         O   |
+        /|   |
+             |
+             |
+        =========
+        """,
+        """
+         +---+
+         |   |
+         O   |
+        /|\\  |
+             |
+             |
+        =========
+        """,
+        """
+         +---+
+         |   |
+         O   |
+        /|\\  |
+        /    |
+             |
+        =========
+        """,
+        """
+         +---+
+         |   |
+         O   |
+        /|\\  |
+        / \\  |
+             |
+        =========
+        """
+    ]
+      # Evita error si intentos > 6, es decir que retornara el dibujo final cuando se pierda
+    return dibujos[min(intentos, 6)]
+
+def mostrar_palabra(palabra, letras_adivinadas):
+    resultado = ""
+
+    for letra in palabra:
+        if letra in letras_adivinadas:
+            resultado += letra
+        else:
+            resultado += "_"
+
+    return resultado
+
+
+def pedir_letra(letras_usadas):
+    while True:
+        letra = input("Adivina una letra: ").lower()
+
+        if len(letra) != 1 or not letra.isalpha():
+            print("Por favor, escribe una única letra.")
+
+        elif letra in letras_usadas:
+            print("Ya la usaste. Probá otra.")
+
+        else:
+            return letra
+
 def ahorcado():
     """Inicia el juego del ahorcado"""
     print("Iniciando juego del ahorcado...")
+    palabras = ["python", "programacion", "curso", "seguridad"]
+
+    palabraOculta = random.choice(palabras)
+
+    intentos = 0
+    letrasAdivinadas = []
+    while True:
+        print(mostrarAhorcado(intentos))
+        
+        print(f"Palabra oculta ({len(palabraOculta)} letras): ", mostrar_palabra(palabraOculta, letrasAdivinadas))
+
+        # El usuario intenta con una letra
+        letra = pedir_letra(letrasAdivinadas)
+        letrasAdivinadas.append(letra)
+
+        # Verificamos si ya todas las letras fueron adivinadas
+        # Lo que hace es iterar con el for por cada letra de "palabraOculta"
+        # Usa esa letra para verificar si está en "letrasAdivinadas"
+        # Si todas dan true, significa que se adivinaron todas las letras
+        if(all(letra in letrasAdivinadas for letra in palabraOculta)):
+            print("¡Felicidades! ¡Adivinaste la palabra:", palabraOculta, "!")
+            break
+
+        if not letra in palabraOculta: # La letra no está en la palabra oculta
+            intentos += 1
+            print("Letra incorrecta.")
+
+
+        if intentos >= 6:
+            print("¡Perdiste! La palabra era:", palabraOculta)
+            break
+
+        # Mostrar letras usadas separadas por comas y la palabra oculta con guiones bajos
+        # para ocultar las letras no adivinadas
+        print("Letras usadas:", ", ".join(letrasAdivinadas))
+        print("Palabra oculta:", mostrar_palabra(palabraOculta, letrasAdivinadas))
+        
+        # El usuario puede intentar adivinar la palabra completa
+        palabra = input("Ya sabes la palabra? (deja en blanco si no la sabes): ").lower()
+
+        if palabra.strip() != "":
+            if palabra == palabraOculta:
+                print("¡Felicidades! ¡Adivinaste la palabra:", palabraOculta, "!")
+                break
+
+            else:
+                intentos += 1
+                print("Palabra incorrecta.")
 
 def exitProgram():
     """Sale del programa"""
