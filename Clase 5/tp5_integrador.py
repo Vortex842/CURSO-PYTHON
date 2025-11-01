@@ -1,3 +1,11 @@
+#============================================================================================
+# Programa:     tp5_integrador.py
+# Autor:        Nahuel Agustin Tapia
+# Fecha:        1/11/2025
+# Descripcion:  Menu interactivo con  opciones matematicas, randoms y juego del ahorcado
+# Versión:      1.10.4
+#============================================================================================
+
 
 import getpass as gp
 import hashlib as hash
